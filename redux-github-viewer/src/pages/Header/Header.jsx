@@ -5,6 +5,7 @@ import HeaderMenus from './HeaderMenus'
 
 //styleの定義
 const HeaderContainer = styled.div`
+  flex: 1;
   background-color: #333333;
   display: flex;
   align-items: center;

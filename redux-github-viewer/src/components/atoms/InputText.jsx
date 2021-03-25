@@ -2,8 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TextInput = styled.input`
-  margin: 8px 16px;
+  border: 1px solid rgb(225, 228, 232);
+  border-radius: 6px;
+  margin: 0px 12px;
+  padding: 8px;
   outline: none;
+  height: 100%;
+  width: 100%;
 `
 
 function InputText() {
