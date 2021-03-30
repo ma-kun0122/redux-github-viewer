@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import './App.css'
-import Top from './pages/Top'
-import PullRequest from './pages/PullRequest'
-import Profile from './pages/Profile'
 import Issue from './pages/Issue'
+import Profile from './pages/Profile'
+import PullRequest from './pages/PullRequest'
+import Top from './pages/Top'
 
 const App = () => (
   <BrowserRouter>

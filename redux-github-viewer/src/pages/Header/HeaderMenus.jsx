@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -71,7 +71,7 @@ const HeaderMenus = () => {
             tabIndex={1}
           >
             <MenuList>
-              <StyledLink to="/Home">Top</StyledLink>
+              <StyledLink to="/Top">Top</StyledLink>
             </MenuList>
             <MenuList>
               <StyledLink to="/profile">Your Profile</StyledLink>

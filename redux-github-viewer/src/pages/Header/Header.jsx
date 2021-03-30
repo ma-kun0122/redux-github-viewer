@@ -5,7 +5,6 @@ import HeaderMenus from './HeaderMenus'
 
 //styleの定義
 const HeaderContainer = styled.div`
-  flex: 1;
   background-color: #333333;
   display: flex;
   align-items: center;
@@ -29,7 +28,7 @@ function Header() {
   return (
     <HeaderContainer>
       <TitleLogo>
-        <StyledLink to="/Home"> Github Viwer</StyledLink>
+        <StyledLink to="/Top"> Github Viwer</StyledLink>
       </TitleLogo>
       <HeaderLink>
         <StyledLink to="/issue">Issue</StyledLink>

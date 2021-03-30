@@ -1,7 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import CheckBox from '/Users/hirooka/redux-github-viewer/redux-github-viewer/src/components/atoms/CheckBox'
+import {
+  CreateIssueAction,
+  DeleteIssueAction,
+} from '/Users/hirooka/redux-github-viewer/redux-github-viewer/src/reducks/users/actions'
+import CheckBox from '/Users/hirooka/redux-github-viewer/src/components/atoms/CheckBox'
 
 const IssueTableContainer = styled.table`
   table-layout: fixed;
@@ -52,7 +56,7 @@ export const IssueOutline = styled(TableDataCell)`
 `
 
 function IssueTable() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const selector = useSelector((state) => state)
   console.log(selector.issues)
   return (
@@ -62,7 +66,7 @@ function IssueTable() {
           <CheckBoxCell>
             <CheckBox />
           </CheckBoxCell>
-          {/* <>
+          <>
             <button
               onClick={() =>
                 dispatch(
@@ -79,7 +83,7 @@ function IssueTable() {
             >
               DeleteDispatch確認ボタン
             </button>
-          </> */}
+          </>
           <TableHeaderCell></TableHeaderCell>
           <TableHeaderCell>ステータス</TableHeaderCell>
           <TableHeaderCell>作成者</TableHeaderCell>
@@ -88,7 +92,8 @@ function IssueTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
+        {/* <TableRow>
+        
           <CheckBoxCell>
             <CheckBox />
           </CheckBoxCell>
@@ -98,7 +103,7 @@ function IssueTable() {
           <TableDataCell>03-24-2021</TableDataCell>
           <TableDataCell>03-24-2021</TableDataCell>
         </TableRow>
-
+        
         <TableRow>
           <CheckBoxCell>
             <CheckBox />
@@ -108,7 +113,7 @@ function IssueTable() {
           <TableDataCell>aaa</TableDataCell>
           <TableDataCell>03-24-2021</TableDataCell>
           <TableDataCell>03-24-2021</TableDataCell>
-        </TableRow>
+        </TableRow> */}
       </TableBody>
     </IssueTableContainer>
   )

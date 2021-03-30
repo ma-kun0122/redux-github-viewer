@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-import PageTitle from '../atoms/PageTitle'
-import InputText from '../atoms/InputText'
-import { GreenButton, RedButton } from '../atoms/Btn'
 import Modal from 'react-modal'
+import styled from 'styled-components'
+import { GreenButton, RedButton } from '../atoms/Btn'
+import InputText from '../atoms/InputText'
+import PageTitle from '../atoms/PageTitle'
 
 Modal.setAppElement('#root')
 
@@ -34,7 +34,7 @@ function IssueHeader() {
       {/* 以下モーダル部分 */}
       <div className="CreateIssueModal">
         <button onClick={() => setIsOpen(true)}>Open Modal</button>
-        <Modal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(false)}>
+        <Modal isOpen={modalIsOpen}>
           <button onClick={() => setIsOpen(false)}>Close Modal</button>
         </Modal>
       </div>
