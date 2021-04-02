@@ -1,12 +1,12 @@
-import React from 'react'
-import styled from 'styled-components'
-import Header from '../components/templates/Header/Header'
+import React from "react";
+import styled from "styled-components";
+import Header from "../components/templates/HeaderContainer";
 
 const PullRequestMessage = styled.h1`
   position: relative;
   text-align: center;
   top: 100px;
-`
+`;
 
 const PullRequest = () => {
   return (
@@ -14,7 +14,7 @@ const PullRequest = () => {
       <Header />
       <PullRequestMessage>PullRequest</PullRequestMessage>
     </>
-  )
-}
+  );
+};
 
-export default PullRequest
+export default PullRequest;

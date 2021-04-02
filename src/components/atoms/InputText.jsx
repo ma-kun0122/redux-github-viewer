@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const TextInput = styled.input`
   border: 1px solid rgb(225, 228, 232);
@@ -7,12 +7,11 @@ const TextInput = styled.input`
   margin: 0px 12px;
   padding: 8px;
   outline: none;
-  height: 100%;
   width: 100%;
-`
+`;
 
 function InputText() {
-  return <TextInput type="text" placeholder="Issue名で検索" /> //これをhooksでpropsに？
+  return <TextInput type="text" placeholder="Issue名で検索" />; //これをhooksでpropsに？
 }
 
-export default InputText
+export default InputText;

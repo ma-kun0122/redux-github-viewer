@@ -1,11 +1,12 @@
 // Action typeを定義してexport
-export const CREATE_ISSUE = 'CREATE_ISSUE'
-export const DELETE_ISSUE = 'DELETE_ISSUE'
-export const UPDATE_ISSUE = 'UPDATE_ISSUE'
+export const CREATE_ISSUE = "CREATE_ISSUE";
+export const DELETE_ISSUE = "DELETE_ISSUE";
+export const UPDATE_ISSUE = "UPDATE_ISSUE";
+export const CREATE_PROFILE = "CREATE_PROFILE";
 
 export const CreateIssueAction = (userState) => {
   return {
-    type: 'CREATE_ISSUE',
+    type: "CREATE_ISSUE",
     payload: {
       outline: userState.outline,
       status: userState.status,
@@ -13,31 +14,42 @@ export const CreateIssueAction = (userState) => {
       createDate: userState.createDate,
       updateDate: userState.updateDate,
     },
-  }
-}
+  };
+};
 
 export const DeleteIssueAction = () => {
   return {
-    type: 'DELETE_ISSUE',
+    type: "DELETE_ISSUE",
     payload: {
-      outline: '',
-      status: '',
-      username: '',
-      createDate: '',
-      updateDate: '',
+      outline: "",
+      status: "",
+      username: "",
+      createDate: "",
+      updateDate: "",
     },
-  }
-}
+  };
+};
 
 export const UpDateIssueAction = (userState) => {
   return {
-    type: 'UPDATE_ISSUE',
+    type: "UPDATE_ISSUE",
     payload: {
       outline: userState.outline,
-      status: '',
-      username: '',
-      createDate: '',
-      updateDate: '',
+      status: "",
+      username: "",
+      createDate: "",
+      updateDate: "",
     },
-  }
-}
+  };
+};
+
+export const createProfileAction = () => {
+  return {
+    type: "CREATE_PROFILE",
+    payload: {
+      userpicture: "aaaaaaaa",
+      username: "aaaaaaaaaaa",
+      mailadress: "aaaaaaaaa",
+    },
+  };
+};

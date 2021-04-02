@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { IssueHeader } from "../molecules/IssueHeader";
-import IssueTable from "../molecules/IssueTable";
+import { IssueHeader } from "../organisms/Issue/IssueHeader";
+import IssueTable from "../organisms/Issue/IssueTable";
 
 const IssueParents = styled.div`
   max-width: 800px;

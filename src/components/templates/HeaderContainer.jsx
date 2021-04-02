@@ -1,9 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import HeaderMenus from './HeaderMenus'
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import HeaderMenus from "../molecules/HeaderMenus";
 
-//styleの定義
 const HeaderContainer = styled.div`
   background-color: #333333;
   display: flex;
@@ -11,18 +10,18 @@ const HeaderContainer = styled.div`
   padding: 16px;
   width: 100%;
   height: 48px;
-`
+`;
 const TitleLogo = styled.h1`
   font-size: 2rem;
   padding: 0px;
-`
-const HeaderLink = styled.p``
+`;
+const HeaderLink = styled.p``;
 
 const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
   margin: 0px 16px;
-`
+`;
 
 function Header() {
   return (
@@ -38,7 +37,7 @@ function Header() {
       </HeaderLink>
       <HeaderMenus></HeaderMenus>
     </HeaderContainer>
-  )
+  );
 }
 
-export default Header
+export default Header;

@@ -1,6 +1,6 @@
-import React from 'react'
-import IssueContainer from '../components/organisms/IssueContainer'
-import Header from '../components/templates/Header/Header'
+import React from "react";
+import Header from "../components/templates/HeaderContainer";
+import IssueContainer from "../components/templates/IssueContainer";
 
 const Issue = () => {
   return (
@@ -8,7 +8,7 @@ const Issue = () => {
       <Header />
       <IssueContainer />
     </>
-  )
-}
+  );
+};
 
-export default Issue
+export default Issue;

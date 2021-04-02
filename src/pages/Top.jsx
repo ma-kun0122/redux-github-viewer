@@ -1,8 +1,8 @@
-import React from 'react'
-import Header from '../components/templates/Header/Header'
+import React from "react";
+import Header from "../components/templates/HeaderContainer";
 
 const Top = () => {
-  return <Header />
-}
+  return <Header />;
+};
 
-export default Top
+export default Top;
