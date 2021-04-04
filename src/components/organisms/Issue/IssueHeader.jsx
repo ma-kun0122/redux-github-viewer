@@ -1,10 +1,11 @@
 import React from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
-import { GreenButton, RedButton } from "../../atoms/Btn";
+import { GreenButton, RedButton, WhiteButton } from "../../atoms/Btn";
 import InputText from "../../atoms/InputText";
 import PageTitle from "../../atoms/PageTitle";
-import { CreateModalBody } from "../ModalBody";
+import ModalOutline from "../../molecules/Modal/ModalOutline";
+import ModalTitle from "../../molecules/Modal/ModalTitle";
 
 Modal.setAppElement("#root");
 
@@ -22,24 +23,33 @@ export const ModalContainer = styled(Modal)`
   height: 600px;
 `;
 
+export const ModalFooter = styled.div`
+  display: flex;
+`;
+
 export function IssueHeader() {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   return (
     <>
       <IssueHeaderContainer>
         <PageTitle />
         <InputText type="text" placeholder="Issue名で検索" />
-        <GreenButton
-          className="CreateIssueModal"
-          onClick={() => setIsOpen(true)}
-        >
-          New
-        </GreenButton>
-        <ModalContainer isOpen={modalIsOpen}>
-          {/* ここにモーダルの中身記述 */}
-          <CreateModalBody />
-        </ModalContainer>
+        <GreenButton onClick={openModal}>New</GreenButton>
+        <Modal isOpen={modalIsOpen}>
+          <ModalTitle />
+          <ModalOutline />
+          <ModalFooter>
+            <GreenButton>作成</GreenButton>
+            <WhiteButton onClick={closeModal}>閉じる</WhiteButton>
+          </ModalFooter>
+        </Modal>
         <RedButton>Delete</RedButton>
       </IssueHeaderContainer>
     </>
