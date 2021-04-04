@@ -1,14 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import createStore from './reducks/store/store'
-import { ConnectedRouter } from 'connected-react-router'
-import './index.css'
-import App from './App'
-import * as History from 'history'
+import { ConnectedRouter } from "connected-react-router";
+import * as History from "history";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import App from "./App";
+import "./index.css";
+import createStore from "./reducks/store/store";
 
-const history = History.createBrowserHistory()
-export const store = createStore(history) //ここでcreateScoreを実行して初めてストアが作られている
+const history = History.createBrowserHistory();
+export const store = createStore(history); //ここでcreateScoreを実行して初めてストアが作られている
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,5 +17,5 @@ ReactDOM.render(
       <App />
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('root')
-)
+  document.getElementById("root")
+);

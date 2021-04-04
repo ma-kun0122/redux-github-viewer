@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+// import React from "react";
+// import styled from "styled-components";
 
-const Title = styled.p``;
+// const Title = styled.p``;
 
-function ModalTitleName() {
-  return (
-    <>
-      <Title>タイトル</Title>
-    </>
-  );
-}
+// function ModalTitleName() {
+//   return (
+//     <>
+//       <Title>タイトル</Title>
+//     </>
+//   );
+// }
 
-export default ModalTitleName;
+// export default ModalTitleName;
