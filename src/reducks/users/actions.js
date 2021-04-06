@@ -33,3 +33,10 @@ export const addIssueAction = () => {
     ],
   };
 };
+
+const TabActionTypes = {
+  SELECT_TAB: "SELECT_TAB",
+  RESET_TABS: "RESET_TABS",
+};
+
+export default TabActionTypes;

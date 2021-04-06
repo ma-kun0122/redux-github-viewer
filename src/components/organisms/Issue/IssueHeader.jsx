@@ -15,6 +15,8 @@ const ModalInput = styled(InputText)`
 
 function ModalTitleContent() {
   const [outline, setOutline] = useState("");
+  const [status, setStatus] = useState("");
+
   const inputText = (e) => {
     setOutline(e.target.value);
   };
@@ -41,6 +43,7 @@ export const ModalFooter = styled.div`
 export function IssueHeader() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [outline, setOutline] = useState("");
+
   const selector = useSelector((state) => state.issues);
   const dispatch = useDispatch();
 
@@ -50,16 +53,28 @@ export function IssueHeader() {
   function closeModal() {
     setIsOpen(false);
   }
+  function clearText() {
+    const textForm = document.getElementById("form1");
+    textForm.value = "aaaaaaaaaaaaaaaa";
+  }
 
   const addList = () => {
+    var today = new Date();
     dispatch({
       type: "ADD_ISSUE",
       payload: {
-        outline: "",
+        outline,
+        status: "open",
+        username: "masashi", //userのstateからとってくる
+        createDate: today.getFullYear(),
+        updateDate: today.getFullYear(),
       },
     });
-    setOutline("");
     console.log(initialState);
+  };
+
+  const inputOutlineText = (e) => {
+    setOutline(e.target.value);
   };
 
   return (
@@ -75,13 +90,26 @@ export function IssueHeader() {
           <Title>Issueを追加</Title>
 
           <p>タイトルを追加</p>
-          <input placeholder="タイトルを追加してください"></input>
+          <input
+            type="text"
+            value={outline}
+            onChange={inputOutlineText}
+            placeholder="タイトルを追加してください"
+            id="form1"
+          ></input>
 
           <p>説明</p>
-          <textarea placeholder="説明を追加してください"></textarea>
+          <textarea placeholder="説明を追加してください" id="form2"></textarea>
 
           <ModalFooter>
-            <GreenButton onClick={addList}>作成</GreenButton>
+            <GreenButton
+              onClick={() => {
+                addList();
+                closeModal();
+              }}
+            >
+              作成
+            </GreenButton>
             <WhiteButton onClick={closeModal}>閉じる</WhiteButton>
           </ModalFooter>
         </Modal>

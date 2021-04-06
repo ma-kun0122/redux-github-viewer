@@ -1,10 +1,11 @@
-import { connectRouter, routerMiddleware } from "connected-react-router";
+import { connectRouter } from "connected-react-router";
 import {
   applyMiddleware,
   combineReducers,
   createStore as reduxCreateStore,
 } from "redux";
 import { IssuesReducer, ProfileReducer } from "../users/reducers";
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function createStore(history) {
   return reduxCreateStore(
@@ -15,6 +16,9 @@ export default function createStore(history) {
       issues: IssuesReducer,
       profile: ProfileReducer,
     }),
-    applyMiddleware(routerMiddleware(history))
+    composeEnhancers(
+      applyMiddleware()
+      //thunk,
+    )
   );
 }

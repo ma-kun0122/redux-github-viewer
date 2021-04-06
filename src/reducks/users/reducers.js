@@ -8,11 +8,10 @@ export const IssuesReducer = (state = initialState.issues, action) => {
   ) {
     case Actions.CURRENT_ISSUE:
       return state;
+
     case Actions.ADD_ISSUE:
-      return {
-        ...state.issues,
-        ...action.payload,
-      };
+      return [...state, action.payload];
+
     case Actions.DELETE_ISSUE:
       return {
         ...state, //initialStateを、action.payloadの内容に書き換えるため記述
