@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import initialState from "../../../reducks/store/initialState";
 import { GreenButton, RedButton, WhiteButton } from "../../atoms/Btn";
 import InputText from "../../atoms/InputText";
 import PageTitle from "../../atoms/PageTitle";
@@ -70,7 +69,6 @@ export function IssueHeader() {
         updateDate: today.getFullYear(),
       },
     });
-    console.log(initialState);
   };
 
   const inputOutlineText = (e) => {
@@ -86,16 +84,13 @@ export function IssueHeader() {
 
         <Modal isOpen={modalIsOpen}>
           {/* 以下、Modalの中身 */}
-
           <Title>Issueを追加</Title>
-
           <p>タイトルを追加</p>
           <input
             type="text"
             value={outline}
             onChange={inputOutlineText}
             placeholder="タイトルを追加してください"
-            id="form1"
           ></input>
 
           <p>説明</p>

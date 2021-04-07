@@ -14,14 +14,18 @@ export const IssuesReducer = (state = initialState.issues, action) => {
 
     case Actions.DELETE_ISSUE:
       return {
-        ...state, //initialStateを、action.payloadの内容に書き換えるため記述
-        ...action.payload, //この内容に上書きする
+        ...state,
+        issues: state.issues.filter((item, index) => index !== action.payload),
       };
+    // return [...state, action.payload];
     default:
       return state;
   }
 };
 
 export const ProfileReducer = (state = initialState.profile, action) => {
-  return state;
+  switch (action.type) {
+    default:
+      return state;
+  }
 };

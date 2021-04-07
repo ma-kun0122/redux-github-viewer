@@ -1,7 +1,6 @@
 import { React } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import initialState from "../../../reducks/store/initialState";
 import CheckBox from "../../atoms/CheckBox";
 
 const IssueTableContainer = styled.table`
@@ -52,10 +51,15 @@ export const IssueOutline = styled(TableDataCell)`
 
 function IssueTable() {
   //storeからstateを取得する場合、useSelector()を使う
+  // const [checkedItems, setCheckedItems] = useState({});
   const issues = useSelector((state) => state.issues);
   const dispatch = useDispatch();
-  console.log(initialState);
-  console.log("↑初期値の表示");
+  const deleteList = (index) => {
+    dispatch({
+      type: "DELETE_ISSUE",
+      payload: index,
+    });
+  };
   return (
     <IssueTableContainer>
       <TableHeader>
@@ -75,7 +79,7 @@ function IssueTable() {
         {issues.map((list) => (
           <>
             <TableRow>
-              <CheckBoxCell>
+              <CheckBoxCell onClick={() => deleteList()}>
                 <CheckBox />
               </CheckBoxCell>
               <IssueOutline>{list.outline}</IssueOutline>

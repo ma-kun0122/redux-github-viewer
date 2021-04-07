@@ -24,7 +24,7 @@ const initialState = {
   ],
   profile: [
     {
-      userpicture: "url", //画像のURLを記載？
+      userpicture: "./stbsradio_alco.png", //画像のURLを記載？
       username: "masashi",
       mailadress: "hoge@example.com",
     },
