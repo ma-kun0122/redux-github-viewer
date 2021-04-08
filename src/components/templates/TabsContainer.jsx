@@ -11,7 +11,7 @@ function TabsContainer() {
           // aria-selected={state.tab === "panel1"}
           // onClick={handleClick}
           >
-            カベルネ・ソーヴィニョン
+            Tab1
           </button>
         </li>
         <li role="presentation">
@@ -21,17 +21,7 @@ function TabsContainer() {
           // aria-selected={state.tab === "panel2"}
           // onClick={handleClick}
           >
-            メルロー
-          </button>
-        </li>
-        <li role="presentation">
-          <button
-          // role="tab"
-          // aria-controls="panel3"
-          // aria-selected={state.tab === "panel3"}
-          // onClick={handleClick}
-          >
-            ピノ・ノワール
+            Tab2
           </button>
         </li>
       </ul>
