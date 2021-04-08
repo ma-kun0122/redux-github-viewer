@@ -54,10 +54,10 @@ function IssueTable() {
   // const [checkedItems, setCheckedItems] = useState({});
   const issues = useSelector((state) => state.issues);
   const dispatch = useDispatch();
-  const deleteList = (index) => {
+  const deleteList = (outline) => {
     dispatch({
       type: "DELETE_ISSUE",
-      payload: index,
+      payload: outline,
     });
   };
   return (
@@ -76,10 +76,10 @@ function IssueTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {issues.map((list) => (
+        {issues.map((list, index) => (
           <>
             <TableRow>
-              <CheckBoxCell>
+              <CheckBoxCell onClick={() => deleteList(list.outline)}>
                 <CheckBox />
               </CheckBoxCell>
               <IssueOutline>{list.outline}</IssueOutline>

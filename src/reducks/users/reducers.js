@@ -13,11 +13,9 @@ export const IssuesReducer = (state = initialState.issues, action) => {
       return [...state, action.payload];
 
     case Actions.DELETE_ISSUE:
-      return {
-        ...state,
-        issues: state.issues.filter((item, index) => index !== action.payload),
-      };
-    // return [...state, action.payload];
+      return [...state.filter((list) => list.outline !== action.payload)];
+    //選択したoutlineを持たない＝残っているものだけをfilterして再描画するアクション
+
     default:
       return state;
   }
