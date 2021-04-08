@@ -6,6 +6,7 @@ import Header from "../components/templates/HeaderContainer";
 //プロフィールページの実装（userストアにデータベタ書きしたものを表示だけ）
 
 const ProfilePage = styled.div`
+  max-height: 400px;
   max-width: 800px;
   margin: 0 auto;
   padding: 80px 50px;
@@ -31,6 +32,8 @@ const ProfileContent = styled.div`
 
 const UserPhoto = styled.img`
   display: block;
+  height: 100px;
+  width: auto;
 `;
 
 const UserInfo = styled.div``;

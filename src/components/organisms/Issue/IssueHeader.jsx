@@ -3,14 +3,11 @@ import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { GreenButton, RedButton, WhiteButton } from "../../atoms/Btn";
-import InputText from "../../atoms/InputText";
+import { TextInput } from "../../atoms/InputText";
 import PageTitle from "../../atoms/PageTitle";
+import { Textarea } from "../../atoms/Textarea";
 
 Modal.setAppElement("#root");
-
-const ModalInput = styled(InputText)`
-  height: 300px;
-`;
 
 function ModalTitleContent() {
   const [outline, setOutline] = useState("");
@@ -33,10 +30,46 @@ const IssueHeaderContainer = styled.div`
 `;
 
 //以下、Modalの定義
-const Title = styled.h2``;
+const ModalBody = styled(Modal)`
+  background-color: white;
+  border: 1px solid rgb(225, 228, 232);
+  outline-style: none;
+  border-radius: 6px;
+  width: 60%;
+  min-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+`;
+const ModalContainer = styled.div`
+  margin: 0 auto;
+  padding: 0px 40px;
+`;
+const ModalTitle = styled.h2``;
+
+const ModalContent = styled.div`
+  margin-top: 60px;
+`;
+
+const ModalContent1 = styled.div``;
+const ModalContent2 = styled.div`
+  margin-top: 40px;
+`;
+
+const ModalTextInput = styled(TextInput)`
+  margin: 0px;
+  width: 100%;
+`;
+
+const ModalTextarea = styled(Textarea)`
+  margin: 0px;
+  width: 100%;
+`;
 
 export const ModalFooter = styled.div`
+  margin-top: 80px;
+  margin-bottom: 40px;
   display: flex;
+  justify-content: flex-end;
 `;
 
 export function IssueHeader() {
@@ -51,10 +84,6 @@ export function IssueHeader() {
   }
   function closeModal() {
     setIsOpen(false);
-  }
-  function clearText() {
-    const textForm = document.getElementById("form1");
-    textForm.value = "aaaaaaaaaaaaaaaa";
   }
 
   const addList = () => {
@@ -79,35 +108,45 @@ export function IssueHeader() {
     <>
       <IssueHeaderContainer>
         <PageTitle />
-        <InputText type="text" placeholder="Issue名で検索" />
+        <TextInput type="text" placeholder="Issue名で検索" />
         <GreenButton onClick={openModal}>New</GreenButton>
 
-        <Modal isOpen={modalIsOpen}>
+        <ModalBody isOpen={modalIsOpen}>
           {/* 以下、Modalの中身 */}
-          <Title>Issueを追加</Title>
-          <p>タイトルを追加</p>
-          <input
-            type="text"
-            value={outline}
-            onChange={inputOutlineText}
-            placeholder="タイトルを追加してください"
-          ></input>
+          <ModalContainer>
+            <ModalTitle>Issueを追加</ModalTitle>
+            <ModalContent>
+              <ModalContent1>
+                <p>タイトルを追加</p>
+                <ModalTextInput
+                  type="text"
+                  value={outline}
+                  onChange={inputOutlineText}
+                  placeholder="タイトルを追加してください"
+                ></ModalTextInput>
+              </ModalContent1>
+              <ModalContent2>
+                <p>説明</p>
+                <ModalTextarea
+                  placeholder="説明を入力してください"
+                  id="form2"
+                ></ModalTextarea>
+              </ModalContent2>
 
-          <p>説明</p>
-          <textarea placeholder="説明を追加してください" id="form2"></textarea>
-
-          <ModalFooter>
-            <GreenButton
-              onClick={() => {
-                addList();
-                closeModal();
-              }}
-            >
-              作成
-            </GreenButton>
-            <WhiteButton onClick={closeModal}>閉じる</WhiteButton>
-          </ModalFooter>
-        </Modal>
+              <ModalFooter>
+                <GreenButton
+                  onClick={() => {
+                    addList();
+                    closeModal();
+                  }}
+                >
+                  作成
+                </GreenButton>
+                <WhiteButton onClick={closeModal}>閉じる</WhiteButton>
+              </ModalFooter>
+            </ModalContent>
+          </ModalContainer>
+        </ModalBody>
 
         <RedButton>Delete</RedButton>
       </IssueHeaderContainer>

@@ -24,7 +24,7 @@ const initialState = {
   ],
   profile: [
     {
-      userpicture: "./stbsradio_alco.png", //画像のURLを記載？
+      userpicture: `${process.env.PUBLIC_URL}/tbsradio_alco.png`, //画像のURLを記載？
       username: "masashi",
       mailadress: "hoge@example.com",
     },

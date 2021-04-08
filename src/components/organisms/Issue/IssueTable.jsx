@@ -79,7 +79,7 @@ function IssueTable() {
         {issues.map((list) => (
           <>
             <TableRow>
-              <CheckBoxCell onClick={() => deleteList()}>
+              <CheckBoxCell>
                 <CheckBox />
               </CheckBoxCell>
               <IssueOutline>{list.outline}</IssueOutline>
