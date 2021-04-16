@@ -1,5 +1,5 @@
 import { default as React } from "react";
-import TextArea from "../TextArea";
+import TextArea from "../Textarea";
 
 function ModalOutlineContent() {
   return (

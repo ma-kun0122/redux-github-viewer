@@ -75,8 +75,34 @@ export const ModalFooter = styled.div`
 export function IssueHeader() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [outline, setOutline] = useState("");
+  const selector = useSelector((state) => state);
+  console.log(selector.issues);
+  const [isChecked, toggleChecked] = useState(false);
 
-  const selector = useSelector((state) => state.issues);
+  // const getVisibleissues = (issues, filter) => {
+  //   // https://qiita.com/micropig3402/items/bb5ca76c3b1c5eac2526
+  //   if (event.target.value !== "") {
+  //     console.log("中身が入りました");
+  //     dispatch({
+  //       type: "SHOW_COMPLETED",
+  //     });
+  //     return;
+  //   } else {
+  //     //中身が空になった時のinitialState全表示
+  //     console.log("中身が空になりました");
+  //     dispatch({
+  //       type: "SHOW_ALL",
+  //     });
+  //     return;
+  //   }
+  // };
+
+  // const mapStateToPorops = (state) => {
+  //   return { issues: getVisibleTodos(state.issues, state.visibilityFilter) };
+  // };
+
+  // const VisibleTodoList = connect(mapStateToPorops)(IssueHeader);
+
   const dispatch = useDispatch();
 
   function openModal() {
@@ -88,9 +114,11 @@ export function IssueHeader() {
 
   const addList = () => {
     var today = new Date();
+    var index = selector.issues.length;
     dispatch({
       type: "ADD_ISSUE",
       payload: {
+        id: index,
         outline,
         status: "open",
         username: "masashi", //userのstateからとってくる
@@ -100,15 +128,67 @@ export function IssueHeader() {
     });
   };
 
+  //codesandbox.io/s/react-redux-filter-example-u4ftx?from-embed=&file=/src/components/Filter/index.js
+  const issueFilter = (event) => {
+    console.log(event.target.value);
+    if (event.target.value !== "") {
+      //
+      console.log("中身が入りました");
+      dispatch({
+        type: "FILTER_ISSUE",
+      });
+    } else {
+      //中身が空になった時のinitialState全表示
+      console.log("中身が空になりました");
+      dispatch({
+        type: "CURRENT_ISSUE",
+      });
+    }
+  };
+
+  // これをonChangeにはめ込む
+  //   switch (
+  //     filter //filterの内容によって表示するissuesを変えるswitch文という意味
+  //   ) {
+  //     case VisibilityFilters.SHOW_ALL: //全表示の場合
+  //       console.log("ケースSHOW_ALL実行");
+  //       return issues;
+  //     case VisibilityFilters.SHOW_COMPLETED: //フィルターがかかる場合
+  //       console.log("ケースSHOW_COMPLETED実行");
+  //       return issues.filter(
+  //         (list) => list.includes(event.target.value) !== ""
+  //       );
+  //   }
+  // };
+
   const inputOutlineText = (e) => {
     setOutline(e.target.value);
   };
+
+  const deleteList = (id) => {
+    dispatch({
+      type: "DELETE_ISSUE",
+      payload: id,
+    });
+  };
+
+  // const deleteList = (outline) => {
+  //   dispatch({
+  //     type: "DELETE_ISSUE",
+  //     payload: outline,
+  //   });
+  // };
 
   return (
     <>
       <IssueHeaderContainer>
         <PageTitle />
-        <TextInput type="text" placeholder="Issue名で検索" />
+        <TextInput
+          type="text"
+          placeholder="Issue名で検索"
+          // onChange={getVisibleissues}
+          onChange={issueFilter}
+        />
         <GreenButton onClick={openModal}>New</GreenButton>
 
         <ModalBody isOpen={modalIsOpen}>
@@ -120,7 +200,6 @@ export function IssueHeader() {
                 <p>タイトルを追加</p>
                 <ModalTextInput
                   type="text"
-                  value={outline}
                   onChange={inputOutlineText}
                   placeholder="タイトルを追加してください"
                 ></ModalTextInput>
@@ -148,7 +227,7 @@ export function IssueHeader() {
           </ModalContainer>
         </ModalBody>
 
-        <RedButton>Delete</RedButton>
+        <RedButton onClick={() => deleteList(id)}>Delete</RedButton>
       </IssueHeaderContainer>
     </>
   );

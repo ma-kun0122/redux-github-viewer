@@ -9,11 +9,15 @@ const IssueParents = styled.div`
   padding: 80px 50px;
 `;
 
+// export const UserCount = React.createContext();
+
 function IssueContainer() {
   return (
     <IssueParents>
       <IssueHeader />
+      {/* <UserCount.Provider value={100}> */}
       <IssueTable />
+      {/* </UserCount.Provider> */}
     </IssueParents>
   );
 }

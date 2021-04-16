@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const InputCheckBox = styled.input`
@@ -6,14 +6,14 @@ const InputCheckBox = styled.input`
   outline: none;
 `;
 
-function CheckBox() {
+const CheckBox = () => {
+  const [isChecked, toggleChecked] = useState(false);
+
   return (
     <>
-      <label>
-        <InputCheckBox type="checkbox" />
-      </label>
+      <InputCheckBox type="checkbox" />
     </>
   );
-}
+};
 
 export default CheckBox;

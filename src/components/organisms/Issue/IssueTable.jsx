@@ -1,6 +1,7 @@
-import { React } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import AllCheckBox from "../../atoms/AllCheckBox";
 import CheckBox from "../../atoms/CheckBox";
 
 const IssueTableContainer = styled.table`
@@ -50,22 +51,15 @@ export const IssueOutline = styled(TableDataCell)`
 `;
 
 function IssueTable() {
-  //storeからstateを取得する場合、useSelector()を使う
-  // const [checkedItems, setCheckedItems] = useState({});
   const issues = useSelector((state) => state.issues);
   const dispatch = useDispatch();
-  const deleteList = (outline) => {
-    dispatch({
-      type: "DELETE_ISSUE",
-      payload: outline,
-    });
-  };
+
   return (
     <IssueTableContainer>
       <TableHeader>
         <TableRow>
           <CheckBoxCell>
-            <CheckBox />
+            <AllCheckBox />
           </CheckBoxCell>
 
           <IssueHeaderOutline></IssueHeaderOutline>
@@ -79,7 +73,7 @@ function IssueTable() {
         {issues.map((list, index) => (
           <>
             <TableRow>
-              <CheckBoxCell onClick={() => deleteList(list.outline)}>
+              <CheckBoxCell>
                 <CheckBox />
               </CheckBoxCell>
               <IssueOutline>{list.outline}</IssueOutline>

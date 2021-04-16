@@ -40,25 +40,24 @@ const UserInfo = styled.div``;
 
 const Profile = () => {
   const profile = useSelector((state) => state.profile);
+  console.log(profile);
   return (
     <>
       <Header />
       <ProfilePage>
         <ProfileTitle>Profile</ProfileTitle>
-        {profile.map((list) => (
-          <ProfileContainer>
-            <ProfileContent>
-              <UserTitle>プロフィール</UserTitle>
-              <UserPhoto src={list.userpicture} alt="プロフィール画像" />
-            </ProfileContent>
-            <ProfileContent>
-              <UserTitle>ユーザー名</UserTitle>
-              <UserContent>{list.username}</UserContent>
-              <UserTitle>メールアドレス</UserTitle>
-              <UserContent>{list.mailadress}</UserContent>
-            </ProfileContent>
-          </ProfileContainer>
-        ))}
+        <ProfileContainer>
+          <ProfileContent>
+            <UserTitle>プロフィール</UserTitle>
+            <UserPhoto src={profile.userpicture} alt="プロフィール画像" />
+          </ProfileContent>
+          <ProfileContent>
+            <UserTitle>ユーザー名</UserTitle>
+            <UserContent>{profile.username}</UserContent>
+            <UserTitle>メールアドレス</UserTitle>
+            <UserContent>{profile.mailadress}</UserContent>
+          </ProfileContent>
+        </ProfileContainer>
       </ProfilePage>
     </>
   );
