@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { IssueHeader } from "../organisms/Issue/IssueHeader";
 import IssueTable from "../organisms/Issue/IssueTable";
@@ -12,11 +12,20 @@ const IssueParents = styled.div`
 // export const UserCount = React.createContext();
 
 function IssueContainer() {
+  const [filterText, setFilterText] = useState("");
+
+  const onChangeFilterText = (e) => {
+    setFilterText(e.target.value);
+  };
+
   return (
     <IssueParents>
-      <IssueHeader />
+      <IssueHeader
+        filterText={filterText}
+        onChangeFilterText={onChangeFilterText}
+      />
       {/* <UserCount.Provider value={100}> */}
-      <IssueTable />
+      <IssueTable filterText={filterText} />
       {/* </UserCount.Provider> */}
     </IssueParents>
   );

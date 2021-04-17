@@ -72,7 +72,7 @@ export const ModalFooter = styled.div`
   justify-content: flex-end;
 `;
 
-export function IssueHeader() {
+export function IssueHeader({ filterText, onChangeFilterText }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [outline, setOutline] = useState("");
   const selector = useSelector((state) => state);
@@ -130,7 +130,7 @@ export function IssueHeader() {
 
   //codesandbox.io/s/react-redux-filter-example-u4ftx?from-embed=&file=/src/components/Filter/index.js
   const issueFilter = (event) => {
-    console.log(event.target.value);
+    console.log("filter word", event.target.value);
     if (event.target.value !== "") {
       //
       console.log("中身が入りました");
@@ -178,6 +178,7 @@ export function IssueHeader() {
   //     payload: outline,
   //   });
   // };
+  debugger;
 
   return (
     <>
@@ -186,8 +187,9 @@ export function IssueHeader() {
         <TextInput
           type="text"
           placeholder="Issue名で検索"
+          value={filterText}
+          onChange={onChangeFilterText}
           // onChange={getVisibleissues}
-          onChange={issueFilter}
         />
         <GreenButton onClick={openModal}>New</GreenButton>
 

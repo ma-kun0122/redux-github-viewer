@@ -6,12 +6,12 @@ const InputCheckBox = styled.input`
   outline: none;
 `;
 
-const CheckBox = () => {
+const CheckBox = ({ onChange, value }) => {
   const [isChecked, toggleChecked] = useState(false);
 
   return (
     <>
-      <InputCheckBox type="checkbox" />
+      <InputCheckBox type="checkbox" value={value} onChange={onChange} />
     </>
   );
 };

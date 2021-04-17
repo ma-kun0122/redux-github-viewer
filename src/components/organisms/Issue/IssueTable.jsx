@@ -50,9 +50,51 @@ export const IssueOutline = styled(TableDataCell)`
   word-wrap: break-word;
 `;
 
-function IssueTable() {
+function IssueTable({ filterText }) {
   const issues = useSelector((state) => state.issues);
   const dispatch = useDispatch();
+
+  const list = issues.filter((issue) => issue.outline.includes(filterText));
+
+  function ListNone() {
+    return (
+      <>
+        <TableRow>
+          <CheckBoxCell>
+            <p>データがありません</p>
+          </CheckBoxCell>
+          <IssueOutline></IssueOutline>
+          <TableDataCell></TableDataCell>
+          <TableDataCell></TableDataCell>
+          <TableDataCell></TableDataCell>
+          <TableDataCell></TableDataCell>
+        </TableRow>
+      </>
+    );
+  }
+  function ListExists() {
+    return list.map((item, index) => (
+      <>
+        <TableRow>
+          <CheckBoxCell>
+            <CheckBox
+              value={index}
+              onChange={(e) => {
+                console.log("onChange", e.target.value, e.target.checked);
+              }}
+            />
+          </CheckBoxCell>
+          <IssueOutline>{item.outline}</IssueOutline>
+          <TableDataCell>{item.status}</TableDataCell>
+          <TableDataCell>{item.username}</TableDataCell>
+          <TableDataCell>{item.createDate}</TableDataCell>
+          <TableDataCell>{item.updateDate}</TableDataCell>
+        </TableRow>
+      </>
+    ));
+  }
+  //listの中身あるなしで条件分岐
+  const showList = list == "" ? <ListNone /> : <ListExists />;
 
   return (
     <IssueTableContainer>
@@ -69,22 +111,7 @@ function IssueTable() {
           <TableHeaderCell>更新日付</TableHeaderCell>
         </TableRow>
       </TableHeader>
-      <TableBody>
-        {issues.map((list, index) => (
-          <>
-            <TableRow>
-              <CheckBoxCell>
-                <CheckBox />
-              </CheckBoxCell>
-              <IssueOutline>{list.outline}</IssueOutline>
-              <TableDataCell>{list.status}</TableDataCell>
-              <TableDataCell>{list.username}</TableDataCell>
-              <TableDataCell>{list.createDate}</TableDataCell>
-              <TableDataCell>{list.updateDate}</TableDataCell>
-            </TableRow>
-          </>
-        ))}
-      </TableBody>
+      <TableBody>{showList}</TableBody>
     </IssueTableContainer>
   );
 }
