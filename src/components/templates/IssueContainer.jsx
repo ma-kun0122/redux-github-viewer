@@ -6,7 +6,7 @@ import IssueTable from "../organisms/Issue/IssueTable";
 const IssueParents = styled.div`
   max-width: 800px;
   margin: 0 auto;
-  padding: 80px 50px;
+  padding: 50px 50px;
 `;
 
 // export const UserCount = React.createContext();
