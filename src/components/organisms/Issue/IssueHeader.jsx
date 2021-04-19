@@ -77,31 +77,6 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
   const [outline, setOutline] = useState("");
   const selector = useSelector((state) => state);
   console.log(selector.issues);
-  const [isChecked, toggleChecked] = useState(false);
-
-  // const getVisibleissues = (issues, filter) => {
-  //   // https://qiita.com/micropig3402/items/bb5ca76c3b1c5eac2526
-  //   if (event.target.value !== "") {
-  //     console.log("中身が入りました");
-  //     dispatch({
-  //       type: "SHOW_COMPLETED",
-  //     });
-  //     return;
-  //   } else {
-  //     //中身が空になった時のinitialState全表示
-  //     console.log("中身が空になりました");
-  //     dispatch({
-  //       type: "SHOW_ALL",
-  //     });
-  //     return;
-  //   }
-  // };
-
-  // const mapStateToPorops = (state) => {
-  //   return { issues: getVisibleTodos(state.issues, state.visibilityFilter) };
-  // };
-
-  // const VisibleTodoList = connect(mapStateToPorops)(IssueHeader);
 
   const dispatch = useDispatch();
 
@@ -115,51 +90,22 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
   const addList = () => {
     var today = new Date();
     var index = selector.issues.length;
-    dispatch({
-      type: "ADD_ISSUE",
-      payload: {
-        id: index,
-        outline,
-        status: "open",
-        username: "masashi", //userのstateからとってくる
-        createDate: today.getFullYear(),
-        updateDate: today.getFullYear(),
-      },
-    });
-  };
-
-  //codesandbox.io/s/react-redux-filter-example-u4ftx?from-embed=&file=/src/components/Filter/index.js
-  const issueFilter = (event) => {
-    console.log("filter word", event.target.value);
-    if (event.target.value !== "") {
-      //
-      console.log("中身が入りました");
-      dispatch({
-        type: "FILTER_ISSUE",
-      });
+    if (value == "") {
+      return;
     } else {
-      //中身が空になった時のinitialState全表示
-      console.log("中身が空になりました");
       dispatch({
-        type: "CURRENT_ISSUE",
+        type: "ADD_ISSUE",
+        payload: {
+          id: index,
+          outline,
+          status: "open",
+          username: "masashi", //userのstateからとってくる
+          createDate: today.getFullYear(),
+          updateDate: today.getFullYear(),
+        },
       });
     }
   };
-
-  // これをonChangeにはめ込む
-  //   switch (
-  //     filter //filterの内容によって表示するissuesを変えるswitch文という意味
-  //   ) {
-  //     case VisibilityFilters.SHOW_ALL: //全表示の場合
-  //       console.log("ケースSHOW_ALL実行");
-  //       return issues;
-  //     case VisibilityFilters.SHOW_COMPLETED: //フィルターがかかる場合
-  //       console.log("ケースSHOW_COMPLETED実行");
-  //       return issues.filter(
-  //         (list) => list.includes(event.target.value) !== ""
-  //       );
-  //   }
-  // };
 
   const inputOutlineText = (e) => {
     setOutline(e.target.value);
@@ -172,14 +118,6 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
     });
   };
 
-  // const deleteList = (outline) => {
-  //   dispatch({
-  //     type: "DELETE_ISSUE",
-  //     payload: outline,
-  //   });
-  // };
-  debugger;
-
   return (
     <>
       <IssueHeaderContainer>
@@ -189,7 +127,6 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
           placeholder="Issue名で検索"
           value={filterText}
           onChange={onChangeFilterText}
-          // onChange={getVisibleissues}
         />
         <GreenButton onClick={openModal}>New</GreenButton>
 

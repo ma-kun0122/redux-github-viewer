@@ -17,10 +17,6 @@ export const IssuesReducer = (state = initialState.issues, action) => {
       return [...state.filter((t) => t.id !== action.payload)];
     //選択したidを持たない＝残っているものだけをfilter(抽出)して再描画するアクション
 
-    case Actions.FILTER_ISSUE:
-      return [
-        ...state.filter((array) => array.outline.includes(event.target.value)),
-      ];
     default:
       return state;
   }

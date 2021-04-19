@@ -54,6 +54,7 @@ function IssueTable({ filterText }) {
   const issues = useSelector((state) => state.issues);
   const dispatch = useDispatch();
 
+  //フィルターされたもののみ都度表示のためlist定義
   const list = issues.filter((issue) => issue.outline.includes(filterText));
 
   function ListNone() {
@@ -80,7 +81,7 @@ function IssueTable({ filterText }) {
             <CheckBox
               value={index}
               onChange={(e) => {
-                console.log("onChange", e.target.value, e.target.checked);
+                console.log("onChange", e.target.checked);
               }}
             />
           </CheckBoxCell>

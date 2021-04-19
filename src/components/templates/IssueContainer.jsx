@@ -12,21 +12,24 @@ const IssueParents = styled.div`
 // export const UserCount = React.createContext();
 
 function IssueContainer() {
+  //検索フィルターのためのuseState Haederとtableで共通のものを使うため、ここで定義
   const [filterText, setFilterText] = useState("");
 
   const onChangeFilterText = (e) => {
     setFilterText(e.target.value);
+    //文字が入るたび再レンダリングされる
   };
 
   return (
     <IssueParents>
-      <IssueHeader
+      <IssueHeader //以下、上で定義したものをpropsとして子に渡している
         filterText={filterText}
         onChangeFilterText={onChangeFilterText}
       />
-      {/* <UserCount.Provider value={100}> */}
-      <IssueTable filterText={filterText} />
-      {/* </UserCount.Provider> */}
+      <IssueTable
+        //以下、上で定義したものをpropsとして子に渡している
+        filterText={filterText}
+      />
     </IssueParents>
   );
 }
