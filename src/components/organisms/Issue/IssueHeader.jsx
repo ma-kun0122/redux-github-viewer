@@ -10,7 +10,7 @@ import { Textarea } from "../../atoms/Textarea";
 Modal.setAppElement("#root");
 
 function ModalTitleContent() {
-  const [outline, setOutline] = useState("");
+  const [outlineText, setOutline] = useState("");
   const [status, setStatus] = useState("");
 
   const inputText = (e) => {
@@ -18,7 +18,7 @@ function ModalTitleContent() {
   };
   return (
     <>
-      <ModalInput type="text" value={outline} onChange={inputText} />
+      <ModalInput type="text" value={outlineText} onChange={inputText} />
     </>
   );
 }
@@ -74,10 +74,9 @@ export const ModalFooter = styled.div`
 
 export function IssueHeader({ filterText, onChangeFilterText }) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [outline, setOutline] = useState("");
+  const [outlineText, setOutline] = useState("");
+  // const [valueText, inputValueText] = useState("");
   const selector = useSelector((state) => state);
-  console.log(selector.issues);
-
   const dispatch = useDispatch();
 
   function openModal() {
@@ -90,21 +89,18 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
   const addList = () => {
     var today = new Date();
     var index = selector.issues.length;
-    if (value == "") {
-      return;
-    } else {
-      dispatch({
-        type: "ADD_ISSUE",
-        payload: {
-          id: index,
-          outline,
-          status: "open",
-          username: "masashi", //userのstateからとってくる
-          createDate: today.getFullYear(),
-          updateDate: today.getFullYear(),
-        },
-      });
-    }
+
+    dispatch({
+      type: "ADD_ISSUE",
+      payload: {
+        id: index,
+        outline: outlineText,
+        status: "open",
+        username: "masashi", //userのstateからとってくる
+        createDate: today.getFullYear(),
+        updateDate: today.getFullYear(),
+      },
+    });
   };
 
   const inputOutlineText = (e) => {
@@ -118,6 +114,7 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
     });
   };
 
+  console.log(outlineText);
   return (
     <>
       <IssueHeaderContainer>
@@ -139,6 +136,7 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
                 <p>タイトルを追加</p>
                 <ModalTextInput
                   type="text"
+                  // value={valueText}
                   onChange={inputOutlineText}
                   placeholder="タイトルを追加してください"
                 ></ModalTextInput>
@@ -154,8 +152,13 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
               <ModalFooter>
                 <GreenButton
                   onClick={() => {
-                    addList();
-                    closeModal();
+                    if (outlineText !== "") {
+                      addList();
+                      closeModal();
+                      setOutline("");
+                    } else {
+                      openModal();
+                    }
                   }}
                 >
                   作成
@@ -166,7 +169,13 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
           </ModalContainer>
         </ModalBody>
 
-        <RedButton onClick={() => deleteList(id)}>Delete</RedButton>
+        <RedButton
+          onClick={() => {
+            deleteList(selector.issues.id);
+          }}
+        >
+          Delete
+        </RedButton>
       </IssueHeaderContainer>
     </>
   );

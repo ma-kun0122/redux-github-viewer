@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import CheckBox from "./CheckBox";
 
 const InputCheckBox = styled.input`
   margin: 10px;
@@ -8,11 +7,9 @@ const InputCheckBox = styled.input`
 `;
 
 function AllCheckBox() {
-  //   const count = useContext(UserCount);
-  //   console.log("Hello");
   return (
     <div>
-      <CheckBox />
+      <InputCheckBox type="checkbox" />
     </div>
   );
 }

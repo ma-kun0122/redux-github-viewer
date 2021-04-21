@@ -9,10 +9,8 @@ const IssueParents = styled.div`
   padding: 50px 50px;
 `;
 
-// export const UserCount = React.createContext();
-
 function IssueContainer() {
-  //検索フィルターのためのuseState Haederとtableで共通のものを使うため、ここで定義
+  //検索フィルターのためのuseState。Haederとtableで共通のものを使うため、ここで定義
   const [filterText, setFilterText] = useState("");
 
   const onChangeFilterText = (e) => {
@@ -20,15 +18,24 @@ function IssueContainer() {
     //文字が入るたび再レンダリングされる
   };
 
+  // const deleteList = (id) => {
+  //   dispatch({
+  //     type: "DELETE_ISSUE",
+  //     payload: id,
+  //   });
+  // };
+
   return (
     <IssueParents>
       <IssueHeader //以下、上で定義したものをpropsとして子に渡している
         filterText={filterText}
         onChangeFilterText={onChangeFilterText}
+        // deleteList={deleteList}
       />
       <IssueTable
         //以下、上で定義したものをpropsとして子に渡している
         filterText={filterText}
+        // deleteList={deleteList}
       />
     </IssueParents>
   );

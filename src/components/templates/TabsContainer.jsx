@@ -34,6 +34,7 @@ const OutOfFocusTab = styled.li`
 `;
 
 const TabBtn = styled.button`
+  cursor: pointer;
   outline-style: none;
   border-radius: 6px;
   background-color: white;

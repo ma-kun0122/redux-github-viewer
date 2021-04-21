@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import AllCheckBox from "../../atoms/AllCheckBox";
@@ -73,7 +73,7 @@ function IssueTable({ filterText }) {
       </>
     );
   }
-  function ListExists() {
+  function ListExists({ isAllChecked, onChangeAllCheckbox, deleteList }) {
     return list.map((item, index) => (
       <>
         <TableRow>
@@ -81,8 +81,10 @@ function IssueTable({ filterText }) {
             <CheckBox
               value={index}
               onChange={(e) => {
-                console.log("onChange", e.target.checked);
+                console.log("onChange", index, e.target.checked);
               }}
+              isAllChecked={isAllChecked}
+              onChangeAllCheckbox={onChangeAllCheckbox}
             />
           </CheckBoxCell>
           <IssueOutline>{item.outline}</IssueOutline>
@@ -97,12 +99,24 @@ function IssueTable({ filterText }) {
   //listの中身あるなしで条件分岐
   const showList = list == "" ? <ListNone /> : <ListExists />;
 
+  //チェックボックス全選択のためのuseState
+  const [isAllChecked, changeAllCheckbox] = useState(false);
+  const onChangeAllCheckbox = () => {
+    //ヘッダーのチェックボックスが押されるたび再レンダリング(テーブルのチェックボックスの状態変更)される
+    changeAllCheckbox(!isAllChecked); //true(全チェック)⇆false(全オフ)の切り替え
+  };
+
   return (
     <IssueTableContainer>
       <TableHeader>
         <TableRow>
           <CheckBoxCell>
-            <AllCheckBox />
+            <AllCheckBox
+              onChange={() => {
+                onChangeAllCheckbox(!isAllChecked);
+              }}
+              checked={isAllChecked}
+            />
           </CheckBoxCell>
 
           <IssueHeaderOutline></IssueHeaderOutline>
