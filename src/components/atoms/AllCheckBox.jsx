@@ -6,10 +6,16 @@ const InputCheckBox = styled.input`
   outline: none;
 `;
 
-function AllCheckBox() {
+function AllCheckBox({ isAllChecked, onChangeAllCheckbox }) {
+  console.log(isAllChecked);
   return (
     <div>
-      <InputCheckBox type="checkbox" />
+      <InputCheckBox
+        type="checkbox"
+        onChange={() => {
+          onChangeAllCheckbox(!isAllChecked);
+        }}
+      />
     </div>
   );
 }

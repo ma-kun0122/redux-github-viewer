@@ -6,10 +6,16 @@ const InputCheckBox = styled.input`
   outline: none;
 `;
 
-const CheckBox = ({ value, isAllChecked, onChangeAllCheckbox }) => {
+const CheckBox = ({ onChange, value, isAllChecked }) => {
+  console.log(isAllChecked);
   return (
     <>
-      <InputCheckBox type="checkbox" value={value} checked={isAllChecked} />
+      <InputCheckBox
+        type="checkbox"
+        onChange={onChange}
+        value={value}
+        checked={isAllChecked}
+      />
     </>
   );
 };

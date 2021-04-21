@@ -19,6 +19,15 @@ const TableHeader = styled.thead``;
 const TableRow = styled.tr`
   text-align: left;
 `;
+
+const ListTableRow = styled.tr`
+  text-align: left;
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(198, 218, 230, 0.25);
+  }
+`;
+
 const TableHeaderCell = styled.th`
   text-align: left;
   border-bottom: 1px solid rgb(225, 228, 232);
@@ -76,15 +85,15 @@ function IssueTable({ filterText }) {
   function ListExists({ isAllChecked, onChangeAllCheckbox, deleteList }) {
     return list.map((item, index) => (
       <>
-        <TableRow>
+        <ListTableRow>
           <CheckBoxCell>
             <CheckBox
               value={index}
               onChange={(e) => {
                 console.log("onChange", index, e.target.checked);
+                onChangeAllCheckbox;
               }}
               isAllChecked={isAllChecked}
-              onChangeAllCheckbox={onChangeAllCheckbox}
             />
           </CheckBoxCell>
           <IssueOutline>{item.outline}</IssueOutline>
@@ -92,7 +101,7 @@ function IssueTable({ filterText }) {
           <TableDataCell>{item.username}</TableDataCell>
           <TableDataCell>{item.createDate}</TableDataCell>
           <TableDataCell>{item.updateDate}</TableDataCell>
-        </TableRow>
+        </ListTableRow>
       </>
     ));
   }
@@ -112,10 +121,8 @@ function IssueTable({ filterText }) {
         <TableRow>
           <CheckBoxCell>
             <AllCheckBox
-              onChange={() => {
-                onChangeAllCheckbox(!isAllChecked);
-              }}
-              checked={isAllChecked}
+              isAllChecked={isAllChecked}
+              onChangeAllCheckbox={onChangeAllCheckbox}
             />
           </CheckBoxCell>
 
