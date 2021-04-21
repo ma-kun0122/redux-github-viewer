@@ -9,20 +9,6 @@ import { Textarea } from "../../atoms/Textarea";
 
 Modal.setAppElement("#root");
 
-function ModalTitleContent() {
-  const [outlineText, setOutline] = useState("");
-  const [status, setStatus] = useState("");
-
-  const inputText = (e) => {
-    setOutline(e.target.value);
-  };
-  return (
-    <>
-      <ModalInput type="text" value={outlineText} onChange={inputText} />
-    </>
-  );
-}
-
 const IssueHeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -75,6 +61,7 @@ export const ModalFooter = styled.div`
 export function IssueHeader({ filterText, onChangeFilterText }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [outlineText, setOutline] = useState("");
+  const [descriptionText, setDescription] = useState("");
   // const [valueText, inputValueText] = useState("");
   const selector = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -89,12 +76,12 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
   const addList = () => {
     var today = new Date();
     var index = selector.issues.length;
-
     dispatch({
       type: "ADD_ISSUE",
       payload: {
         id: index,
         outline: outlineText,
+        description: descriptionText,
         status: "open",
         username: "masashi", //userのstateからとってくる
         createDate: today.getFullYear(),
@@ -105,6 +92,10 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
 
   const inputOutlineText = (e) => {
     setOutline(e.target.value);
+  };
+
+  const inputDescriptionText = (e) => {
+    setDescription(e.target.value);
   };
 
   const deleteList = (id) => {
@@ -136,7 +127,6 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
                 <p>タイトルを追加</p>
                 <ModalTextInput
                   type="text"
-                  // value={valueText}
                   onChange={inputOutlineText}
                   placeholder="タイトルを追加してください"
                 ></ModalTextInput>
@@ -144,14 +134,15 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
               <ModalContent2>
                 <p>説明</p>
                 <ModalTextarea
+                  onChange={inputDescriptionText}
                   placeholder="説明を入力してください"
-                  id="form2"
                 ></ModalTextarea>
               </ModalContent2>
 
               <ModalFooter>
                 <GreenButton
                   onClick={() => {
+                    //概要の中身ある時ない時処理;
                     if (outlineText !== "") {
                       addList();
                       closeModal();

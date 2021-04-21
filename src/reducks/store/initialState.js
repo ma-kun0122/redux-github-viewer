@@ -3,6 +3,7 @@ const initialState = {
     {
       id: 0,
       outline: "A bug in Top Page",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       status: "open",
       username: "1太郎",
       createDate: "03-21-2021",
@@ -11,6 +12,7 @@ const initialState = {
     {
       id: 1,
       outline: "A problem of performance in Top Page",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       status: "open",
       username: "2太郎",
       createDate: "03-21-2021",
@@ -19,6 +21,7 @@ const initialState = {
     {
       id: 2,
       outline: "fix layout",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       status: "close",
       username: "3太郎",
       createDate: "03-21-2021",
