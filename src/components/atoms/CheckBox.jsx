@@ -14,7 +14,7 @@ const CheckBox = ({ onChange, value, isAllChecked }) => {
         type="checkbox"
         onChange={onChange}
         value={value}
-        checked={isAllChecked}
+        checked={isAllChecked ? true : false}
       />
     </>
   );
