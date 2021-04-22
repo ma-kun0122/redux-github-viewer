@@ -7,15 +7,9 @@ const InputCheckBox = styled.input`
 `;
 
 const CheckBox = ({ onChange, value, isAllChecked }) => {
-  console.log(isAllChecked);
   return (
     <>
-      <InputCheckBox
-        type="checkbox"
-        onChange={onChange}
-        value={value}
-        checked={isAllChecked ? true : false}
-      />
+      <InputCheckBox type="checkbox" onChange={onChange} value={value} />
     </>
   );
 };

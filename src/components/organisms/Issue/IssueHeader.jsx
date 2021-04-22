@@ -4,8 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { GreenButton, RedButton, WhiteButton } from "../../atoms/Btn";
 import { TextInput } from "../../atoms/InputText";
+import {
+  ModalBody,
+  ModalContainer,
+  ModalContent,
+  ModalContent1,
+  ModalContent2,
+  ModalFooter,
+  ModalTextarea,
+  ModalTextInput,
+  ModalTitle,
+} from "../../atoms/Modal";
 import PageTitle from "../../atoms/PageTitle";
-import { Textarea } from "../../atoms/Textarea";
 
 Modal.setAppElement("#root");
 
@@ -15,50 +25,8 @@ const IssueHeaderContainer = styled.div`
   align-items: center;
 `;
 
-//以下、Modalの定義
-const ModalBody = styled(Modal)`
-  background-color: white;
-  border: 1px solid rgb(225, 228, 232);
-  outline-style: none;
-  border-radius: 6px;
-  width: 60%;
-  min-width: 400px;
-  margin: 40px auto;
-  padding: 20px;
-`;
-const ModalContainer = styled.div`
-  margin: 0 auto;
-  padding: 0px 40px;
-`;
-const ModalTitle = styled.h2``;
-
-const ModalContent = styled.div`
-  margin-top: 60px;
-`;
-
-const ModalContent1 = styled.div``;
-const ModalContent2 = styled.div`
-  margin-top: 40px;
-`;
-
-const ModalTextInput = styled(TextInput)`
-  margin: 0px;
-  width: 100%;
-`;
-
-const ModalTextarea = styled(Textarea)`
-  margin: 0px;
-  width: 100%;
-`;
-
-export const ModalFooter = styled.div`
-  margin-top: 80px;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: flex-end;
-`;
-
 export function IssueHeader({ filterText, onChangeFilterText }) {
+  //リスト追加時のモーダルのstate定義
   const [modalIsOpen, setIsOpen] = useState(false);
   const [outlineText, setOutline] = useState("");
   const [descriptionText, setDescription] = useState("");
@@ -105,7 +73,6 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
     });
   };
 
-  console.log(outlineText);
   return (
     <>
       <IssueHeaderContainer>
@@ -146,7 +113,7 @@ export function IssueHeader({ filterText, onChangeFilterText }) {
                     if (outlineText !== "") {
                       addList();
                       closeModal();
-                      setOutline("");
+                      // setOutline("");
                     } else {
                       openModal();
                     }

@@ -18,13 +18,6 @@ function IssueContainer() {
     //文字が入るたび再レンダリングされる
   };
 
-  // const deleteList = (id) => {
-  //   dispatch({
-  //     type: "DELETE_ISSUE",
-  //     payload: id,
-  //   });
-  // };
-
   return (
     <IssueParents>
       <IssueHeader //以下、上で定義したものをpropsとして子に渡している
