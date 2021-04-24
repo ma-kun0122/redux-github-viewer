@@ -6,10 +6,22 @@ const InputCheckBox = styled.input`
   outline: none;
 `;
 
-const CheckBox = ({ onChange, value, isAllChecked }) => {
+const CheckBox = ({
+  stopModalEvent,
+  onChange,
+  value,
+  isAllChecked,
+  onClick,
+}) => {
   return (
     <>
-      <InputCheckBox type="checkbox" onChange={onChange} value={value} />
+      <InputCheckBox
+        type="checkbox"
+        onChange={onChange}
+        value={value}
+        onChange={onChange}
+        onClick={onClick}
+      />
     </>
   );
 };

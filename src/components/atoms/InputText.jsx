@@ -10,6 +10,13 @@ export const TextInput = styled.input`
   width: 100%;
 `;
 
-function InputText() {
-  return <TextInput type="text" placeholder="Issue名で検索" />; //これをhooksでpropsに？
+function InputText({ value, index }) {
+  return (
+    <TextInput
+      type="text"
+      placeholder="Issue名で検索"
+      value={value}
+      index={index}
+    />
+  ); //これをhooksでpropsに？
 }

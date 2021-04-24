@@ -125,6 +125,9 @@ function IssueTable({ filterText }) {
       setDescription(e.target.value);
     };
     const issues = useSelector((state) => state.issues);
+    const stopModalEvent = (e) => {
+      e.stopPropagation();
+    };
 
     return list.map((item, index) => (
       <>
@@ -142,9 +145,7 @@ function IssueTable({ filterText }) {
               }}
               isAllChecked={isAllChecked}
               checked={isChecked}
-              onClick={(e) => {
-                e.preventDefault();
-              }}
+              onClick={stopModalEvent}
             />
           </CheckBoxCell>
           <IssueOutline>{item.outline}</IssueOutline>
